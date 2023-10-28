@@ -6,6 +6,10 @@ var colorYellow = "\033[33m"
 var colorRed = "\033[31m"
 var colorReset = "\033[0m"
 
+func Write(message string) {
+	println(message)
+}
+
 func Debug(message string) {
 	println(string(colorReset) + message + string(colorReset))
 }
