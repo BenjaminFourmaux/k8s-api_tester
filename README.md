@@ -14,10 +14,31 @@ A small app in Go to test your APIs in Kubernetes enviromnent
 
 ## To start unsing API Tester 🚀
 ### Go
+Install Go lang `1.21.3` on your system [Download it](https://go.dev/dl/).
+Clone (or dezip) this project and run the following command:
+```bash
+go run main.go
+```
 
 ### Docker
+Download the image from release files named `api_tester.tar`.
+Load this image on your Docker
+```bash
+docker load -i api_tester.tar
+```
+The image is save on your local image registry.
+To deploy a container, use the following command. And check env var if necessary.
+```bash
+docker run api_tester:latest
+``` 
 
 ### Kubernetes 
+Chose a deployment type between `Pod`, `DaemonSet`, `Stateful` or `CronJob` depending of why you need.
+To deploy a deployment, run the following command:
+```bash
+kubectl apply -f deploy-pod.yaml
+```
+You can modify files if necessary.
 
 ## Contributors
 [![](https://badgen.net/github/contributors/BenjaminFourmaux/k8s-api_tester)](https://github.com/BenjaminFourmaux/k8s-api_tester/graphs/contributors)
