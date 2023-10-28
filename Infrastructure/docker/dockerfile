@@ -1,0 +1,23 @@
+# Get image for building App
+FROM golang:1.21.3 AS builder
+
+# Working directory
+WORKDIR /app
+
+# Copy source code
+COPY ../../ .
+
+# Build App
+RUN  go build -o api_tester
+
+# Get lighter Linux image
+FROM alpine:3.14
+
+# Install tool wget and curl
+RUN apk --no-cache add wget curl
+
+# Copy exec in Linux folder
+COPY --from=builder /app/api_tester /usr/local/bin/api_tester
+
+# App entrypoint
+CMD ["api_tester"]

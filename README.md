@@ -21,7 +21,12 @@ go run main.go
 ```
 
 ### Docker
-Download the image from release files named `api_tester.tar`.
+Build Docker image with  Dockerfile
+```bash
+docker build -t api_tester:0.0.1 -f Infrastructure/docker/dockerfile .
+```
+
+Or download the image from release files named `api_tester.tar`.
 Load this image on your Docker
 ```bash
 docker load -i api_tester.tar
