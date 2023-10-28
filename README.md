@@ -4,6 +4,8 @@ A small app in Go to test your APIs in Kubernetes enviromnent
 [![](https://badgen.net/badge/color/1.21.3/00aed8?label=GoLang)]()
 [![](https://badgen.net/badge/icon/docker?icon=docker&label)]()
 
+![Banner](/resource/k8s-api_tester-banner.png)
+
 ## Features ✨
 - [x] Send a HTTP request 
 - [ ] Declare tests using a YAML file who describe test
@@ -11,7 +13,11 @@ A small app in Go to test your APIs in Kubernetes enviromnent
 - [ ] Kubernetes YAML manifest to deploy pod for test in your Kube env ⚓
 
 ## To start unsing API Tester 🚀
+### Go
 
+### Docker
+
+### Kubernetes 
 
 ## Contributors
 [![](https://badgen.net/github/contributors/BenjaminFourmaux/k8s-api_tester)](https://github.com/BenjaminFourmaux/k8s-api_tester/graphs/contributors)
