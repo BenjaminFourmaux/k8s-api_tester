@@ -10,6 +10,21 @@ func Write(message string) {
 	println(message)
 }
 
+func PrintWithColor(message string, color string) {
+	switch color {
+	case "blue":
+		println(string(colorBlue) + message + string(colorReset))
+	case "green":
+		println(string(colorGreen) + message + string(colorReset))
+	case "yellow":
+		println(string(colorYellow) + message + string(colorReset))
+	case "red":
+		println(string(colorRed) + message + string(colorReset))
+	default:
+		println(message)
+	}
+}
+
 func Debug(message string) {
 	println(string(colorReset) + message + string(colorReset))
 }

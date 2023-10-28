@@ -1,0 +1,5 @@
+tests:
+  - name: "Test Internet connection"
+    url: "https://google.com"
+    method: "GET"
+    expectedHTTPCode: 200

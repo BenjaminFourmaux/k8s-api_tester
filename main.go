@@ -1,11 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"os"
 
-	Asssert "api_tester/Class/Assert"
+	"gopkg.in/yaml.v2"
+
 	Console "api_tester/Class/Console"
-	Request "api_tester/Class/Request"
+	Pipeline "api_tester/Class/Pipeline"
+	Entity "api_tester/Entity"
 )
 
 func main() {
@@ -16,15 +18,25 @@ func main() {
 	Console.Write("license : Apache 2.0")
 	Console.Write("--------------------")
 
-	/* --- Test Pipeline --- */
-
-	// 1. Arrange - Send request
-	response := Request.Get_Request("https://google.com")
-
-	// 2. Assert
-	if Asssert.HTTPCodeEqual(*response, 200) {
-		Console.Success("HTTP code is " + fmt.Sprint(200))
-	} else {
-		Console.Error("HTTP code is " + fmt.Sprint(response.StatusCode) + " not " + fmt.Sprint(200))
+	/* -- Read Tests manifest YAML file  -- */
+	yamlFileTests, err := os.ReadFile("Resource/tests.yaml")
+	if err != nil {
+		Console.Error("Unable to read Test config YAML file")
 	}
+
+	var testConfig Entity.TestConfig
+
+	err = yaml.Unmarshal(yamlFileTests, &testConfig)
+
+	if err != nil {
+		Console.Error("Unable to parse in YAML. Check syntax")
+	}
+
+	/* --- Test Pipeline --- */
+	numberOfSuccess := Pipeline.Create(testConfig)
+
+	Console.Write("--------------------")
+
+	/* --- Resume --- */
+	Pipeline.Resume(numberOfSuccess, len(testConfig.Tests))
 }
