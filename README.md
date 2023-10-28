@@ -8,7 +8,7 @@ A small app in Go to test your APIs in Kubernetes enviromnent
 
 ## Features ✨
 - [x] Send a HTTP request 
-- [ ] Declare tests using a YAML file who describe test
+- [X] Declare tests using a YAML file who describe test
 - [ ] Dockerfile to build the Docker image 🐳
 - [ ] Kubernetes YAML manifest to deploy pod for test in your Kube env ⚓
 
