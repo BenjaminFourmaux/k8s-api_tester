@@ -34,7 +34,7 @@ docker load -i api_tester.tar
 The image is save on your local image registry.
 To deploy a container, use the following command. And check env var if necessary.
 ```bash
-docker run api_tester:latest
+docker run -e IS_CONTAINERIZED=true api_tester:latest
 ``` 
 
 ### Kubernetes 
