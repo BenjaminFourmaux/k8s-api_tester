@@ -1,0 +1,35 @@
+name: Docker Image CI/CD
+
+# Trigger
+on:
+  release:
+    types:
+      - created
+
+# Environment variables for a single workflow
+env:
+  APP_NAME: api_tester
+  APP_VERSION: 0.0.1
+
+# Jobs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Build the Docker image
+      run: docker build . --file /Infrastructure/docker/dockerfile --tag $APP_NAME:$APP_VERSION
+
+    - name: Save image as a .tar file
+      run: docker save -o $APP_NAME.tar $APP_NAME:$APP_VERSION
+
+    - name: Create release and attach Docker image
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: $APP_NAME.tar
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
