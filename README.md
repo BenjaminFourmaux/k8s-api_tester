@@ -8,8 +8,9 @@ A small app in Go to test your APIs in Kubernetes enviromnent
 
 ## Features ✨
 - [x] Send a HTTP request 
-- [X] Declare tests using a YAML file who describe test
-- [ ] Dockerfile to build the Docker image 🐳
+- [x] Declare tests using a YAML file who describe test
+- [x] Dockerfile to build the Docker image 🐳
+- [x] Wget and Curl package are installed !
 - [ ] Kubernetes YAML manifest to deploy pod for test in your Kube env ⚓
 
 ## To start unsing API Tester 🚀
@@ -44,6 +45,34 @@ To deploy a deployment, run the following command:
 kubectl apply -f deploy-pod.yaml
 ```
 You can modify files if necessary.
+
+## Describe your Tests with YAML file
+Tests are described in `tests.yaml` YAML file. It location in container is `/etc/api_tester/tests.yaml`. 
+\
+You can overwrite this file by binding your own file as a `volume` to the container location.
+
+### Properties
+| Key | Description | Type |
+| --- | ----------- | ---- |
+| `tests` | Array of test | `Array` |
+| `name` | Name of the test | `String` |
+| `url` | URL of the API to test | `String` |
+| `method` | HTTP method to use | `String` |
+| `expectedHTTPCode` | The expected HTTP code | `Int` |
+
+### Exemple
+```yaml
+tests:
+  - name: "Test Internet connection"
+    url: "https://google.com"
+    method: "GET"
+    expectedHTTPCode: 200
+
+  - name: "Back API health"
+    url: "http://back-api/health"
+    method: "GET"
+    expectedHTTPCode: 200
+```
 
 ## Contributors
 [![](https://badgen.net/github/contributors/BenjaminFourmaux/k8s-api_tester)](https://github.com/BenjaminFourmaux/k8s-api_tester/graphs/contributors)
