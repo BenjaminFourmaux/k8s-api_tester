@@ -20,7 +20,7 @@ jobs:
       run: echo "APP_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
     - name: Display info
-      run: echo "app name: $APP_NAME   app version: $APP_VERSION"
+      run: echo "app name = $APP_NAME   app version = $APP_VERSION"
       
     - name: Checkout code
       uses: actions/checkout@v3
