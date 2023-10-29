@@ -18,6 +18,9 @@ jobs:
     steps:
     - name: Extraire le nom du tag
       run: echo "APP_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+
+    - name: Display info
+      run: echo "app name: $APP_NAME   app version: $APP_VERSION"
       
     - name: Checkout code
       uses: actions/checkout@v3
@@ -26,7 +29,7 @@ jobs:
       run: docker build . --file Infrastructure/docker/dockerfile --tag $APP_NAME:$APP_VERSION
 
     - name: Save image as a .tar file
-      run: docker save -o $APP_NAME.tar $APP_NAME:$APP_VERSION
+      run: docker save -o ${APP_NAME}.tar $APP_NAME:$APP_VERSION
 
     - name: Create release and attach Docker image
       id: create_release
