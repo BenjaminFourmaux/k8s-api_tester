@@ -3,7 +3,7 @@ A small app in Go to test your APIs in Kubernetes enviromnent
 
 [![](https://badgen.net/badge/color/1.21.3/00aed8?label=GoLang)]()
 [![](https://badgen.net/badge/icon/docker?icon=docker&label)]()
-[![](https://badgen.net/github/tag/BenjaminFourmaux/k8s-api_tester?cache=600)](https://github.com/BenjaminFourmaux/k8s-api_tester/tags)
+[![](https://badgen.net/github/tag/BenjaminFourmaux/k8s-api_tester?color=green&cache=600)](https://github.com/BenjaminFourmaux/k8s-api_tester/tags)
 
 ![Banner](/Resource/k8s-api_tester-banner.png)
 
