@@ -9,7 +9,6 @@ on:
 # Environment variables for a single workflow
 env:
   APP_NAME: api_tester
-  APP_VERSION: 0.0.1
 
 # Jobs
 jobs:
@@ -17,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - name: Extraire le nom du tag
+      run: echo "APP_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      
     - name: Checkout code
       uses: actions/checkout@v3
       
