@@ -3,6 +3,7 @@ A small app in Go to test your APIs in Kubernetes enviromnent
 
 [![](https://badgen.net/badge/color/1.21.3/00aed8?label=GoLang)]()
 [![](https://badgen.net/badge/icon/docker?icon=docker&label)]()
+[![](https://badgen.net/github/tag/BenjaminFourmaux/k8s-api_tester?cache=600)](https://github.com/BenjaminFourmaux/k8s-api_tester/tags)
 
 ![Banner](/Resource/k8s-api_tester-banner.png)
 
@@ -24,7 +25,7 @@ go run main.go
 ### Docker
 Build Docker image with  Dockerfile
 ```bash
-docker build -t api_tester:0.0.1 -f Infrastructure/docker/dockerfile .
+docker build -t api_tester:1.0.0 -f Infrastructure/docker/dockerfile .
 ```
 
 Or download the image from release files named `api_tester.tar`.
@@ -35,7 +36,7 @@ docker load -i api_tester.tar
 The image is save on your local image registry.
 To deploy a container, use the following command. And check env var if necessary.
 ```bash
-docker run -e IS_CONTAINERIZED=true api_tester:latest
+docker run -e IS_CONTAINERIZED=true api_tester:1.0.0
 ``` 
 
 ### Kubernetes 

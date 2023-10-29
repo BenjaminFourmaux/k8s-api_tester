@@ -14,7 +14,7 @@ import (
 func main() {
 	/* - Startup - */
 	Console.Write("K8s - API Tester")
-	Console.Write("version : 0.0.1")
+	Console.Write("version : 1.0.0")
 	Console.Write("source : https://github.com/BenjaminFourmaux/k8s-api_tester")
 	Console.Write("author : Benjamin Fourmaux -- Beruet")
 	Console.Write("license : Apache 2.0")
