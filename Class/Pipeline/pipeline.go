@@ -24,7 +24,11 @@ func Create(testConfig Entity.TestConfig) int {
 
 		// Act
 		PrintAct(test.Method, test.Url)
-		response := Request.Send(test.Url, test.Method)
+		HttpOptions := Request.BuildOption(test) // Add Options like Header, Url parameter and Body to the request
+		response := Request.Send(test.Url, test.Method, HttpOptions)
+
+		//b, _ := io.ReadAll(response.Body)
+		//fmt.Println(string(b))
 
 		// Assert
 		PrintAssert("HTTP code Equal to the expected code")
@@ -41,10 +45,14 @@ func Create(testConfig Entity.TestConfig) int {
 		}
 	}
 
-	// Return the number of succesfull test
+	// Return the number of successful test
 	return numberOfSuccess
 }
 
+// Resume
+/*
+Display a resume of tests
+*/
 func Resume(numberOfSuccess int, totalTest int) {
 	successPercentage := (float64(numberOfSuccess) / float64(totalTest)) * 100.0
 
@@ -54,6 +62,7 @@ func Resume(numberOfSuccess int, totalTest int) {
 	}
 }
 
+// PrintStep
 /*
 Info in the console for Step test
 */
@@ -62,11 +71,19 @@ func PrintStep(number int, name string) {
 	Console.PrintWithColor(message, "blue")
 }
 
+// PrintAct
+/*
+Print in the console for Act test
+*/
 func PrintAct(method string, url string) {
 	message := ">> Act - Send " + method + " " + url
 	Console.PrintWithColor(message, "")
 }
 
+// PrintAssert
+/*
+Print in the console for Assertion test
+*/
 func PrintAssert(name string) {
 	message := ">> Assert - " + name
 	Console.PrintWithColor(message, "")

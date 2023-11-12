@@ -3,5 +3,10 @@ tests:
     url: "https://google.com"
     method: "GET"
     expectedHTTPCode: 200
+
+  - name: "Test headers"
+    url: "http://localhost/test"
+    method: "GET"
+    expectedHTTPCode: 200
     headers:
-      - source=localhost
+      - "source=localhost"
