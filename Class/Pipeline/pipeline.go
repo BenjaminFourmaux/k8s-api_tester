@@ -1,6 +1,8 @@
 package Pipeline
 
 import (
+	"fmt"
+	"io"
 	"strconv"
 
 	Assert "api_tester/Class/Assert"
@@ -27,13 +29,13 @@ func Create(testConfig Entity.TestConfig) int {
 		HttpOptions := Request.BuildOption(test) // Add Options like Header, Url parameter and Body to the request
 		response := Request.Send(test.Url, test.Method, HttpOptions)
 
-		//b, _ := io.ReadAll(response.Body)
-		//fmt.Println(string(b))
+		b, _ := io.ReadAll(response.Body)
+		fmt.Println(string(b))
 
 		// Assert
 		PrintAssert("HTTP code Equal to the expected code")
 		if Assert.HTTPCodeEqual(*response, test.ExpectedHTTPCode) {
-			Console.Success(">>> HTTP code is " + strconv.Itoa(response.StatusCode))
+			Console.Success("HTTP code is " + strconv.Itoa(response.StatusCode))
 
 			isSuccess = true
 		} else {

@@ -8,7 +8,7 @@ Add some stuff to use all HTTP
 - Supporting HTTP Header on `Request` Class
 - Some Func documentation
 ### Modified
-- Tests YAML definition to add properties : `test.headers`
+- Tests YAML definition to add properties : `test.headers`, `test.urlParameters`
 - Change some Func documentation
 
 ## v1.0.0 - First One

@@ -10,3 +10,11 @@ tests:
     expectedHTTPCode: 200
     headers:
       - "source=localhost"
+
+  - name: "Test Url parameters"
+    url: "http://localhost/test"
+    method: "GET"
+    expectedHTTPCode: 200
+    parameters:
+      - foo=bar
+      - issou=king
