@@ -13,6 +13,8 @@ A small app in Go to test your APIs in Kubernetes enviromnent
 - [x] Dockerfile to build the Docker image 🐳
 - [x] Wget and Curl package are installed !
 - [ ] Kubernetes YAML manifest to deploy pod for test in your Kube env ⚓
+- [ ] Integrate [Bruno](https://github.com/usebruno/bruno) (or create Postman like) to have an interface to send request on Kubernetes cluster 🐶
+- [ ] Create a Grafana connector to get in dashboard Health of app ✔️⚠️ ❗
 
 ## To start unsing API Tester 🚀
 ### Go
