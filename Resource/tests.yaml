@@ -3,3 +3,5 @@ tests:
     url: "https://google.com"
     method: "GET"
     expectedHTTPCode: 200
+    headers:
+      - source=localhost

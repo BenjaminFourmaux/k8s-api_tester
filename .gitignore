@@ -22,3 +22,6 @@ go.work
 
 # Visual Studio Debug files
 .vscode
+
+# GoLand Editor file
+.idea
