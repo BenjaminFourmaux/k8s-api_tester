@@ -18,3 +18,12 @@ tests:
     parameters:
       - foo=bar
       - issou=king
+
+  - name: "Test Post"
+    url: "http://localhost/test"
+    method: "POST"
+    expectedHTTPCode: 200
+    body: >
+      {
+        "key": "value"
+      }

@@ -12,4 +12,5 @@ type Test struct {
 	ExpectedHTTPCode int      `yaml:"expectedHTTPCode"` // The expected HTTP code
 	Headers          []string `yaml:"headers,flow"`     // List of HTTP Headers
 	Parameters       []string `yaml:"parameters,flow"`  // List of URL Parameters
+	Body             string   // Body content JSON or plain text
 }

@@ -26,6 +26,7 @@ func Create(testConfig Entity.TestConfig) int {
 
 		// Act
 		PrintAct(test.Method, test.Url)
+		Console.Write(test.Body)
 		HttpOptions := Request.BuildOption(test) // Add Options like Header, Url parameter and Body to the request
 		response := Request.Send(test.Url, test.Method, HttpOptions)
 

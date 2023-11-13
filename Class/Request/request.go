@@ -2,6 +2,7 @@ package Request
 
 import (
 	"api_tester/Entity"
+	"bytes"
 	"fmt"
 	"net/http"
 	URL "net/url"
@@ -14,20 +15,23 @@ import (
 type Options struct {
 	HeaderParam []string
 	Parameter   []string
+	Body        string
 }
 
 // Send
 /*
 Wrapper to send an HTTP request with the given Method
 */
-func Send(url string, method string, HttpOptions Options) *http.Response {
+func Send(url string, method string, httpOptions Options) *http.Response {
 	method = strings.ToUpper(method)
 
 	switch method {
 	case "GET":
-		return GetRequest(url, HttpOptions)
+		return GetRequest(url, httpOptions)
+	case "POST":
+		return PostRequest(url, httpOptions)
 	default:
-		return GetRequest(url, HttpOptions)
+		return GetRequest(url, httpOptions)
 	}
 }
 
@@ -39,6 +43,44 @@ func GetRequest(url string, options Options) *http.Response {
 	}
 
 	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		Console.Error("Error creating Request")
+		panic(err)
+	}
+
+	// Add Headers
+	req.Header = HeadersBuilder(options.HeaderParam)
+
+	// Create HTTP client
+	client := &http.Client{}
+
+	// Request execution
+	response, err := client.Do(req)
+	if err != nil {
+		Console.Error("The HTTP request failed")
+		fmt.Println(err)
+	}
+
+	// Return response
+	return response
+}
+
+func PostRequest(url string, options Options) *http.Response {
+	// Url Parameters
+	if len(options.Parameter) > 0 {
+		params := ParametersBuilder(options.Parameter)
+		url = url + "?" + params.Encode()
+	}
+
+	// Body
+	payload := bytes.NewBuffer([]byte{})
+	if options.Body != "" {
+		body := []byte(`{"name": "morpheus", "job": "leader"}`)
+		payload = bytes.NewBuffer(body)
+		fmt.Println(payload)
+	}
+
+	req, err := http.NewRequest("POST", url, payload)
 	if err != nil {
 		Console.Error("Error creating Request")
 		panic(err)
@@ -73,6 +115,9 @@ func BuildOption(config Entity.Test) Options {
 	}
 	if len(config.Parameters) > 0 {
 		options.Parameter = config.Parameters
+	}
+	if config.Body != "" {
+		options.Body = config.Body
 	}
 
 	return options
